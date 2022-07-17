@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:12:23 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/07/13 22:48:01 by gsmereka         ###   ########.fr       */
+/*   Updated: 2022/07/16 01:00:08 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_addchar(char *s, char c)
 	int		size;
 	int		i;
 
+	if (c == '\0')
+		return (s);
 	i = 0;
 	size = ft_strlen(s);
 	new_s = (char *)malloc((size + 2) * sizeof(char));

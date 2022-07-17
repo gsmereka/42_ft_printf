@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 17:18:43 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/07/14 23:54:45 by gsmereka         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:14:24 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdio.h>
 // gcc ft_printf.c main.c  -g libft/libft.a && valgrind -s --leak-check=full ./a.out
 // gcc -Wall -Wextra -Werror -g ft_printf.c main.c libft/libft.a && valgrind -s --leak-check=full ./a.out
+// gcc -Wall -Wextra -Werror main.c libftprintf.a && ./a.out | cat -e
+// cc -Wall -Wextra -Werror -g main.c libftprintf.a && valgrind -s --leak-check=full ./a.out
 int		ft_printf(char *s, ...);
 
 int mainh(void)
@@ -30,10 +32,13 @@ int mainh(void)
 	return (0);
 }
 
-int main(void)
+int mainjhhj(void)
 {
-
-	ft_printf("1, 2, 3, -d test, testing, 0.4s sound, 1, 2, 3xp, sound, -*dtest");
+// 	printf(" %d %d %d \n", '2', '1', 0);
+// 	ft_printf(" %d %d %d \n", '2', '1', 0);
+	printf("a%sa\n", "oie");
+	ft_printf("a%sa\n", "oie");
+	return (0);
 }
 
 int main2(void) 
@@ -76,7 +81,7 @@ int main35(void)
 }
 
 
-int main10(void)
+int main(void)
 {
     char    *str = "rafaela";
     char    *oi = NULL;
@@ -98,7 +103,7 @@ int main10(void)
     ft_printf(", I've printed %d characters!\n", ft_printf("d flag: %d|%d|%d|%d", 0, -37, 37, 187398217));
     ft_printf(", I've printed %d characters!\n", ft_printf("d flag: %d|%d|%d|%d", 0, -22222, 'n', 0));
     ft_printf(", I've printed %d characters!\n", ft_printf("INT MIN: %d", -2147483647 - 1));
-    ft_printf("MIXED:%c|%s|%p|%d|%i|%u|%x|%X|%%\n", str[6], oi, str, -912387, 00000, -99, 743, 743);
+    ft_printf("MIXED:%c|%c|%s|%p|%d|%i|%u|%x|%X|%%\n", '\0', str[6], oi, str, -912387, 00000, -99, 743, 743);
     ft_printf("\n---------original-----------\n");
 
     // original
@@ -114,7 +119,7 @@ int main10(void)
     printf(", I've printed %d characters!\n", printf("d flag: %d|%d|%d|%d", 0, -37, 37, 187398217));
     printf(", I've printed %d characters!\n", printf("d flag: %d|%d|%d|%d", 0, -22222, 'n', 0));
     printf(", I've printed %d characters!\n", printf("INT MIN: %d", -2147483647 - 1));
-    printf("MIXED:%c|%s|%p|%d|%i|%u|%x|%X|%%\n", str[6], oi, str, -912387, 00000, -99, 743, 743);
+    printf("MIXED:%c|%c|%s|%p|%d|%i|%u|%x|%X|%%\n", '\0', str[6], oi, str, -912387, 00000, -99, 743, 743);
 
     // // ft_printf("\n---------Error Test-----------\n");
     // printf("original func: %c\n", "test");

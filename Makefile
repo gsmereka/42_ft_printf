@@ -6,11 +6,9 @@
 #    By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 22:11:38 by lbiasuz           #+#    #+#              #
-#    Updated: 2022/07/14 23:39:29 by gsmereka         ###   ########.fr        #
+#    Updated: 2022/07/17 04:44:38 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-CC		=	cc
 
 NAME	=	libftprintf.a
 
@@ -21,7 +19,7 @@ SRC		=	ft_printf.c
 SRC_B	=	ft_printf_bonus.c ft_print_value_bonus.c ft_flags_bonus.c \
 			ft_converters_bonus.c ft_lenght_flags_bonus.c
 
-HEAD	=	ft_printf.h
+HEADER	=	ft_printf.h
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -36,16 +34,16 @@ $(NAME): $(OBJ)
 bonus: $(NAME_B)
 	make OBJ="$(OBJ_B)"
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
+.o.c: $(HEADER)
+	cc $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -C libft
-	rm	-f $(NAME)
+	rm	-f $(OBJ) $(OBJ_B)
 
 fclean: clean
 	make fclean -C libft
-	rm -rf $(OBJ) $(OBJ_B)
+	rm -rf $(NAME)
 
 re: fclean all
 

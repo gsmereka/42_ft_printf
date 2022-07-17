@@ -6,12 +6,11 @@
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 04:54:14 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/07/15 00:00:48 by gsmereka         ###   ########.fr       */
+/*   Updated: 2022/07/16 08:10:13 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static char	*ft_ptr_adr(char *word)
 {
@@ -57,18 +56,27 @@ static char	*ft_unsignedworks(const char *s, unsigned long long n)
 	return (word);
 }
 
-static char	*ft_atow(const char *s, va_list args)
+static int	ft_printchar(va_list args, char c)
+{
+	if (c == '%' || c == 'c')
+	{
+		if (c == '%')
+			ft_putchar_fd('%', 1);
+		else
+			ft_putchar_fd(va_arg(args, int), 1);
+		return (1);
+	}
+	return (0);
+}
+
+static int	ft_atow(const char *s, va_list args)
 {
 	int		i;
 	char	*word;
 
 	i = 1;
-	if (s[i] == 'c' || s[i] == '%')
-		word = ft_alt_strdup("");
-	if (s[i] == 'c')
-		word = ft_addchar(word, va_arg(args, int));
-	if (s[i] == '%')
-		word = ft_addchar(word, '%');
+	if (ft_printchar(args, s[i]) == 1)
+		return (1);
 	if (s[i] == 's')
 	{
 		word = NULL;
@@ -77,50 +85,38 @@ static char	*ft_atow(const char *s, va_list args)
 			word = ft_strdup("(null)");
 		else
 			word = ft_strdup(word);
-		return (word);
 	}
 	if (s[i] == 'd' || s[i] == 'i')
 		word = ft_itoa(va_arg(args, int));
 	if (s[i] == 'x' || s[i] == 'X' || s[i] == 'p' || s[i] == 'u')
 		word = ft_unsignedworks(s, va_arg(args, unsigned long long));
-	return (word);
-}
-
-static int	ft_printsizefree(char *final_str)
-{
-	int	size;
-
-	ft_putstr_fd(final_str, 0);
-	size = ft_strlen(final_str);
-	free(final_str);
-	return (size);
+	ft_putstr_fd(word, 1);
+	i = ft_strlen(word);
+	free(word);
+	return (i);
 }
 
 int	ft_printf(const char *s, ...)
 {
-	printf("cheguei\n");
 	va_list	args;
-	char	*final_str;
-	char	*word;
 	int		i;
+	int		size;
 
 	i = 0;
+	size = 0;
 	va_start(args, s);
-	final_str = ft_strdup("");
 	while (s[i])
 	{
 		if (s[i] == '%')
 		{
-			word = ft_atow(&s[i], args);
-			final_str = ft_alt_strjoin(final_str, word);
-			free(word);
+			size = size + ft_atow(&s[i], args) - 1;
 			i++;
 		}
 		else
-			final_str = ft_addchar(final_str, s[i]);
+			ft_putchar_fd(s[i], 1);
+		size++;
 		i++;
 	}
 	va_end(args);
-	i = ft_printsizefree(final_str);
-	return (i);
+	return (size);
 }
