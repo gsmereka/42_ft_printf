@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 20:35:00 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/07/14 05:47:57 by gsmereka         ###   ########.fr       */
+/*   Updated: 2022/07/23 21:01:18 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_utoa(unsigned int n);
+int		ft_alt_atoi(const char *nptr);
 char	*ft_itohex(unsigned long long n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
