@@ -1,25 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/01 20:32:25 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/06/06 01:48:57 by gsmereka         ###   ########.fr       */
+/*   Created: 2022/06/12 21:55:25 by gsmereka          #+#    #+#             */
+/*   Updated: 2022/07/25 17:32:20 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+static size_t	ft_calculate_size(unsigned int n)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	while (n != 0)
 	{
+		n = n / 10;
 		i++;
 	}
 	return (i);
+}
+
+char	*ft_utoa(unsigned int n)
+{
+	char	*str;
+	size_t	size;
+
+	if (n == 0)
+		return (ft_strdup("0"));
+	size = ft_calculate_size(n);
+	str = (char *)malloc((size + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	str[size] = '\0';
+	while (size > 0)
+	{
+		str[size - 1] = (n % 10) + '0';
+		n = n / 10;
+		size--;
+	}
+	return (str);
 }

@@ -1,47 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 21:55:25 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/07/13 17:36:29 by gsmereka         ###   ########.fr       */
+/*   Created: 2022/06/12 16:50:23 by gsmereka          #+#    #+#             */
+/*   Updated: 2022/07/26 20:16:41 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static size_t	ft_calculate_size(unsigned int n)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	i;
+	char	*new_s;
+	int		s1_size;
+	int		s2_size;
+	int		i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
-	while (n != 0)
+	s1_size = ft_strlen(s1);
+	s2_size = ft_strlen(s2);
+	new_s = (char *)malloc((s1_size + s2_size + 1) * sizeof(char));
+	if (new_s == NULL)
+		return (NULL);
+	while (i < (s1_size + s2_size + 1))
 	{
-		n = n / 10;
+		if (i < s1_size)
+			new_s[i] = s1[i];
+		else
+			new_s[i] = s2[i - s1_size];
 		i++;
 	}
-	return (i);
-}
-
-char	*ft_utoa(unsigned int n)
-{
-	char	*str;
-	size_t	size;
-
-	if (n == 0)
-		return (ft_strdup("0"));
-	size = ft_calculate_size(n);
-	str = (char *)malloc((size + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	str[size] = '\0';
-	while (size > 0)
-	{
-		str[size - 1] = (n % 10) + '0';
-		n = n / 10;
-		size--;
-	}
-	return (str);
+	free(s1);
+	return ((char *)new_s);
 }

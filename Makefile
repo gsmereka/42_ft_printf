@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 22:11:38 by lbiasuz           #+#    #+#              #
-#    Updated: 2022/07/23 20:36:38 by gsmereka         ###   ########.fr        #
+#    Updated: 2022/07/26 20:20:54 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME	=	libftprintf.a
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-SRC		=	ft_printf.c
+SRC		=	ft_printf.c ft_strjoin.c ft_itoa.c ft_itohex.c \
+			ft_putchar_fd.c ft_putstr_fd.c ft_strdup.c \
+			ft_utoa.c ft_strchr.c ft_strlen.c ft_toupper.c
 
 HEADER	=	ft_printf.h
 
@@ -22,20 +24,17 @@ OBJ		=	$(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C libft
-	ar rcT $(NAME) $(OBJ) libft/libft.a
-
-.o.c: $(HEADER)
+.c.o: $(HEADER)
 	cc $(CFLAGS) -c $< -o $@
 
+$(NAME): $(OBJ)
+	ar -rcs $(NAME) $(OBJ)
+
 clean:
-	make clean -C libft
-	rm	-f $(OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
-	make fclean -C libft
-	rm -rf $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

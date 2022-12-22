@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 04:54:14 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/07/17 19:23:01 by gsmereka         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:38:33 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static char	*ft_ptr_adr(char *word)
 {
 	char	*temp_w;
 
-	temp_w = ft_alt_strdup(word);
+	temp_w = ft_strdup(word);
 	free(word);
 	if (temp_w[0] == '0' && ft_strlen(temp_w) == 1)
-		word = ft_alt_strdup("(nil)");
+		word = ft_strdup("(nil)");
 	else
 	{
-		word = ft_alt_strdup("0x");
-		word = ft_alt_strjoin(word, temp_w);
+		word = ft_strdup("0x");
+		word = ft_strjoin(word, temp_w);
 	}
 	free(temp_w);
 	return (word);
@@ -75,6 +75,8 @@ static int	ft_atow(const char *s, va_list args)
 	char	*word;
 
 	i = 1;
+	if (ft_strchr("cspdiuxX%", s[i]) == NULL)
+		return (1);
 	if (ft_printchar(args, s[i]) == 1)
 		return (1);
 	if (s[i] == 's')
@@ -104,6 +106,8 @@ int	ft_printf(const char *s, ...)
 
 	i = 0;
 	size = 0;
+	if (s == 0)
+		return (-1);
 	va_start(args, s);
 	while (s[i])
 	{
