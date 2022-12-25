@@ -6,7 +6,7 @@
 /*   By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 06:23:11 by gsmereka          #+#    #+#             */
-/*   Updated: 2022/12/24 23:27:26 by gsmereka         ###   ########.fr       */
+/*   Updated: 2022/12/25 02:41:38 by gsmereka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s)
 	int		size;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
 	size = ft_strlen(s);
 	dest = (char *)malloc((size + 1) * sizeof(char));
