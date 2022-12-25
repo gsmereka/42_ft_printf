@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsmereka <gsmereka@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 22:11:38 by lbiasuz           #+#    #+#              #
-#    Updated: 2022/07/26 20:20:54 by gsmereka         ###   ########.fr        #
+#    Updated: 2022/12/24 20:50:22 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ OBJ		=	$(SRC:.c=.o)
 
 all: $(NAME)
 
-.c.o: $(HEADER)
+%.o: %.c
 	cc $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
+$(NAME): $(HEADER) $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 clean:
