@@ -6,7 +6,7 @@
 #    By: gsmereka <gsmereka@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 22:11:38 by lbiasuz           #+#    #+#              #
-#    Updated: 2022/12/24 22:55:22 by gsmereka         ###   ########.fr        #
+#    Updated: 2022/12/24 23:28:06 by gsmereka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	printf.a
 
 CFLAGS		=	-Wall -Wextra -Werror
 
-SRC_DIR		=	src
+SRC_DIR		=	/src
 
 OBJ_DIR		=	./obj
 
@@ -24,11 +24,11 @@ SRC			=	ft_printf.c ft_strjoin.c ft_itoa.c ft_itohex.c \
 
 HEADER		=	./header/ft_printf.h
 
-OBJ			=	$(addprefix $(OBJ_DIR)/, $(addprefix $(SRC_DIR)/, $(SRC:.c=.o)))
+OBJ			=	$(addprefix $(OBJ_DIR), $(addprefix $(SRC_DIR)/, $(SRC:.c=.o)))
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: %.c
+$(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)$(SRC_DIR)
 	cc $(CFLAGS) -c $< -o $@ 
 
