@@ -16,7 +16,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 SRC_DIR		=	/src
 
-OBJ_DIR		=	./obj
+OBJ_DIR		=	obj
 
 SRC			=	ft_printf.c ft_strjoin.c ft_itoa.c ft_itohex.c \
 				ft_putchar_fd.c ft_putstr_fd.c ft_strdup.c \
